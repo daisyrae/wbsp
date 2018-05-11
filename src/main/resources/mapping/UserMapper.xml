@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sfg.wbsp.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="org.sfg.wbsp.domain.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="company_id" property="companyId" jdbcType="INTEGER"/>
+        <result column="account" property="account" jdbcType="VARCHAR"/>
+        <result column="nick" property="nick" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="INTEGER"/>
+        <result column="phone" property="phone" jdbcType="INTEGER"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="avatar" property="avatar" jdbcType="VARCHAR"/>
+        <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
+        <result column="role" property="role" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="checkUser" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select *
+        from user
+        where account = #{account,jdbcType=VARCHAR} and status = 1
+    </select>
+
+    <select id="'selectAll" resultMap="BaseResultMap">
+        select *
+        from user
+        where status = 1
+    </select>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from user
+        where id = #{id,jdbcType=INTEGER} and status=1
+    </select>
+
+    <insert id="insert" parameterType="org.sfg.wbsp.domain.User">
+        insert into user (company_id, account,
+                          nick, sex, phone, email,
+                          avatar, pwd, role)
+        values (#{companyId,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR},
+                #{nick,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{phone,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR},
+                #{avatar,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER})
+    </insert>
+
+    <update id="update" parameterType="org.sfg.wbsp.domain.User">
+        update user
+        set company_id = #{companyId,jdbcType=INTEGER},
+            account    = #{account,jdbcType=VARCHAR},
+            nick       = #{nick,jdbcType=VARCHAR},
+            sex        = #{sex,jdbcType=INTEGER},
+            phone      = #{phone,jdbcType=INTEGER},
+            email      = #{email,jdbcType=VARCHAR},
+            avatar     = #{avatar,jdbcType=VARCHAR},
+            pwd        = #{pwd,jdbcType=VARCHAR},
+            role       = #{role,jdbcType=INTEGER},
+            status     = #{status,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="deleteById" parameterType="java.lang.Integer">
+        update user
+        set status = -1
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
