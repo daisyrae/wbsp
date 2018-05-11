@@ -3,7 +3,7 @@
 html,
 body {
     background: #e9ecf3;
-    overflow: inherit;
+    overflow: auto;
 }
 
 ul,
@@ -39,6 +39,8 @@ a:hover {
 .am-topbar-brand {
     color: #337ab7;
     margin-right: 20px;
+    margin-left: 20px;
+    font-size: 30px;
 }
 
 .am-topbar-brand {
@@ -465,7 +467,7 @@ ul.tpl-dropdown-content li>a.tpl-dropdown-content-message:last-child {
 
 .tpl-content-wrapper {
     padding-left: 255px;
-    padding-top: 10px;
+    /*padding-top: 10px;*/
 }
 
 .tpl-content-wrapper-hover {
