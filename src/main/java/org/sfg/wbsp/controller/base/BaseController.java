@@ -1,6 +1,7 @@
 package org.sfg.wbsp.controller.base;
 
 import org.sfg.wbsp.model.AjaxResult;
+import org.sfg.wbsp.model.Constant;
 
 /**
  * @author huyang8
@@ -9,31 +10,29 @@ import org.sfg.wbsp.model.AjaxResult;
 public abstract class BaseController {
 
     protected <T> AjaxResult successData(T data){
-        AjaxResult ajaxResult=new AjaxResult();
-        ajaxResult.setData(data);
-        ajaxResult.setMessage(null);
-        ajaxResult.setCode(200);
-        return ajaxResult;
+        AjaxResult result=new AjaxResult();
+        result.setCode(Constant.SUCCESS_CODE);
+        result.setData(data);
+        return result;
     }
 
-    protected AjaxResult successMessage(String message){
-        AjaxResult ajaxResult=new AjaxResult();
-        ajaxResult.setMessage(message);
-        ajaxResult.setCode(200);
-        return ajaxResult;
+    protected AjaxResult success(){
+        AjaxResult result=new AjaxResult();
+        result.setCode(Constant.SUCCESS_CODE);
+        return result;
     }
 
     protected AjaxResult failMessage(String message){
-        AjaxResult ajaxResult=new AjaxResult();
-        ajaxResult.setMessage(message);
-        ajaxResult.setCode(500);
-        return ajaxResult;
+        AjaxResult result=new AjaxResult();
+        result.setCode(Constant.FAIL_CODE);
+        result.setMessage(message);
+        return result;
     }
 
-    protected AjaxResult errorMessage(){
-        AjaxResult ajaxResult=new AjaxResult();
-        ajaxResult.setMessage("服务异常，请稍后重试！");
-        ajaxResult.setCode(500);
-        return ajaxResult;
+    protected AjaxResult error(){
+        AjaxResult result=new AjaxResult();
+        result.setCode(Constant.FAIL_CODE);
+        result.setMessage(Constant.ERROR_MESSAGE);
+        return result;
     }
 }

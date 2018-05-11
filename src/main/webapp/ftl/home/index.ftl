@@ -12,9 +12,7 @@
                 </div>
             </div>
             <ol class="am-breadcrumb">
-                <li><a href="#" class="am-icon-home">首页</a></li>
-                <li><a href="#">分类</a></li>
-                <li class="am-active">内容</li>
+                <li class="am-active am-icon-home">首页</li>
             </ol>
             <div class="row">
                 <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">

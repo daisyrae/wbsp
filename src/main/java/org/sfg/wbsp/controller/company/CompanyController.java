@@ -1,8 +1,8 @@
-package org.sfg.wbsp.controller.user;
+package org.sfg.wbsp.controller.company;
 
 import org.sfg.wbsp.controller.base.BaseController;
 import org.sfg.wbsp.model.AjaxResult;
-import org.sfg.wbsp.service.UserService;
+import org.sfg.wbsp.service.CompanyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,23 +11,23 @@ import javax.annotation.Resource;
 
 /**
  * @author huyang8
- * // TODO: 2018/5/10  用户管理controller
+ * // TODO: 2018/5/10  商家管理controller
  */
 @Controller
-@RequestMapping("/user")
-public class UserController extends BaseController {
+@RequestMapping("/company")
+public class CompanyController extends BaseController {
 
     @Resource
-    private UserService userService;
+    private CompanyService companyService;
 
     @RequestMapping("/manager.do")
     public String manager(){
-        return "/user/userManager";
+        return "/company/companyManager";
     }
 
-    @RequestMapping("/selectAll")
+    @RequestMapping("/selectAll.do")
     @ResponseBody
     public AjaxResult selectAll(){
-        return successData(userService.selectAll());
+        return successData(companyService.selectAll());
     }
 }

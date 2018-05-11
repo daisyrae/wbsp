@@ -491,10 +491,11 @@ ul.tpl-dropdown-content li>a.tpl-dropdown-content-message:last-child {
 
 .tpl-left-nav-title {
     height: 50px;
-    padding: 25px 15px 10px;
-    color: #5C9ACF;
+    padding: 15px 15px 10px;
+    color: #fff;
     font-size: 13px;
     font-weight: 600;
+    background: #8bc8fd;
 }
 
 .tpl-left-nav-list {

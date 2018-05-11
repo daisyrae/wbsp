@@ -27,7 +27,6 @@ public class HomeController extends BaseController {
 
     /**
      * 登录页
-     * @return
      */
     @RequestMapping("/login.do")
     public String login(){
@@ -36,10 +35,9 @@ public class HomeController extends BaseController {
 
     /**
      * 登录鉴权
-     * @param session
-     * @param account
-     * @param pwd
-     * @return
+     * @param session session
+     * @param account 账号
+     * @param pwd 密码
      */
     @RequestMapping("/home.do")
     @ResponseBody
@@ -51,19 +49,19 @@ public class HomeController extends BaseController {
         //管理员权限
         if(!ObjectUtils.isEmpty(user)&&1==user.getRole()&&pwd.equals(user.getPwd())){
             session.setAttribute(Constant.SESSION_KEY,user);
-            return successMessage(null);
+            return success();
         }
+        //验证用户账号是否正确
         if(!ObjectUtils.isEmpty(user)&&!PasswordUtil.encrypt(pwd).equals(user.getPwd())){
             return failMessage(Constant.LOGIN_ERROR);
         }else{
             session.setAttribute(Constant.SESSION_KEY,user);
-            return successMessage(null);
+            return success();
         }
     }
 
     /**
      * 跳转主页
-     * @return
      */
     @RequestMapping("/index.do")
     public String index(){
@@ -72,11 +70,10 @@ public class HomeController extends BaseController {
 
     /**
      * 退出系统
-     * @param session
-     * @return
      */
     @RequestMapping("/logout.do")
     public String logout(HttpSession session){
+        //退出系统时清除session
         session.invalidate();
         return "redirect:login.do";
     }
