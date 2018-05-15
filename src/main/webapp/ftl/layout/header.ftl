@@ -1,7 +1,7 @@
 <#macro header>
     <header class="am-topbar am-topbar-inverse admin-header">
         <div class="am-topbar-brand">
-            <#--<span>后台管理系统</span>-->
+            <span>后台管理系统</span>
         </div>
         <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right">
         </div>

@@ -4,10 +4,11 @@
     <resultMap id="BaseResultMap" type="org.sfg.wbsp.domain.User">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="company_id" property="companyId" jdbcType="INTEGER"/>
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
         <result column="account" property="account" jdbcType="VARCHAR"/>
         <result column="nick" property="nick" jdbcType="VARCHAR"/>
         <result column="sex" property="sex" jdbcType="INTEGER"/>
-        <result column="phone" property="phone" jdbcType="INTEGER"/>
+        <result column="phone" property="phone" jdbcType="BIGINT"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
         <result column="avatar" property="avatar" jdbcType="VARCHAR"/>
         <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
@@ -21,16 +22,24 @@
         where account = #{account,jdbcType=VARCHAR} and status = 1
     </select>
 
-    <select id="'selectAll" resultMap="BaseResultMap">
-        select *
-        from user
-        where status = 1
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+            a.*,
+            (select b.name
+             from company b
+             where b.id = a.company_id)
+        from user a
+        where a.status = 1
     </select>
 
     <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select *
-        from user
-        where id = #{id,jdbcType=INTEGER} and status=1
+        select
+            a.*,
+            (select b.name
+             from company b
+             where b.id = a.company_id)
+        from user a
+        where a.status = 1 and a.id = #{id,jdbcType=INTEGER}
     </select>
 
     <insert id="insert" parameterType="org.sfg.wbsp.domain.User">
@@ -38,7 +47,7 @@
                           nick, sex, phone, email,
                           avatar, pwd, role)
         values (#{companyId,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR},
-                #{nick,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{phone,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR},
+                #{nick,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{phone,jdbcType=BIGINT}, #{email,jdbcType=VARCHAR},
                 #{avatar,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER})
     </insert>
 
@@ -48,7 +57,7 @@
             account    = #{account,jdbcType=VARCHAR},
             nick       = #{nick,jdbcType=VARCHAR},
             sex        = #{sex,jdbcType=INTEGER},
-            phone      = #{phone,jdbcType=INTEGER},
+            phone      = #{phone,jdbcType=BIGINT},
             email      = #{email,jdbcType=VARCHAR},
             avatar     = #{avatar,jdbcType=VARCHAR},
             pwd        = #{pwd,jdbcType=VARCHAR},

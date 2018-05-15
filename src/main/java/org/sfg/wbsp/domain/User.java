@@ -5,13 +5,15 @@ public class User {
 
     private Integer companyId;
 
+    private Integer companyName;
+
     private String account;
 
     private String nick;
 
     private Integer sex;
 
-    private Integer phone;
+    private Long phone;
 
     private String email;
 
@@ -39,6 +41,14 @@ public class User {
         this.companyId = companyId;
     }
 
+    public Integer getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(Integer companyName) {
+        this.companyName = companyName;
+    }
+
     public String getAccount() {
         return account;
     }
@@ -63,11 +73,11 @@ public class User {
         this.sex = sex;
     }
 
-    public Integer getPhone() {
+    public Long getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(Long phone) {
         this.phone = phone;
     }
 

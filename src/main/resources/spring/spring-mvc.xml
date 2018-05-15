@@ -54,6 +54,7 @@
 
     <!-- 排除静态资源，避免被springmvc拦截 -->
     <mvc:resources mapping="/assets/**" location="/assets/"/>
+    <mvc:resources mapping="/company/**" location="/assets/"/>
 
     <!-- freemarker视图解析器 -->
     <bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">

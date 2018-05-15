@@ -14,7 +14,8 @@
         <link rel="stylesheet" href="${ctx}/assets/css/amazeui.datatables.css">
         <script src="${ctx}/assets/js/jquery.min.js"></script>
         <script src="${ctx}/assets/js/amazeui.datatables.min.js"></script>
-        <#--<script type="text/javascript" src="${ctx}/assets/js/jquery.dataTables.min.js"></script>-->
+        <script src="${ctx}/assets/js/peppa.form.js"></script>
+        <script src="${ctx}/assets/js/jquery.form.js"></script>
     </head>
     <body data-type="index">
         <!-- 头部引用 -->

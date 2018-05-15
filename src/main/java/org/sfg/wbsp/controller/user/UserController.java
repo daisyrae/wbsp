@@ -30,4 +30,11 @@ public class UserController extends BaseController {
     public AjaxResult selectAll(){
         return successData(userService.selectAll());
     }
+
+    @RequestMapping("/deleteUser")
+    @ResponseBody
+    public AjaxResult deleteUser(int id){
+        userService.deleteById(id);
+        return success();
+    }
 }

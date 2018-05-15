@@ -17,7 +17,7 @@
     <div class="myapp-login-logo-block  tpl-login-max">
         <div class="myapp-login-logo-text">
             <div class="myapp-login-logo-text">
-                后台管理系统&nbsp;&nbsp;&nbsp;&nbsp;<i class="am-icon-skyatlas"></i>&nbsp;&nbsp;&nbsp;&nbsp;登录
+                后台管理系统&nbsp;&nbsp;&nbsp;<i class="am-icon-skyatlas"></i><span>&nbsp;&nbsp;&nbsp;登录</span>
             </div>
         </div>
         <div class="am-u-sm-10 login-am-center">

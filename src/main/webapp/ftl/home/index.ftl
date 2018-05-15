@@ -18,7 +18,7 @@
                 <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
                     <div class="dashboard-stat blue">
                         <div class="visual">
-                            <i class="am-icon-comments-o"></i>
+                            <i class="am-icon-slideshare"></i>
                         </div>
                         <div class="details">
                             <div class="number"> 1349 </div>
@@ -71,18 +71,14 @@
                         </a>
                     </div>
                 </div>
-
-
-
             </div>
-
             <div class="row">
                 <div class="am-u-md-6 am-u-sm-12 row-mb">
                     <div class="tpl-portlet">
                         <div class="tpl-portlet-title">
                             <div class="tpl-caption font-red ">
                                 <i class="am-icon-bar-chart"></i>
-                                <span> Cloud 动态资料</span>
+                                <span> 动态资料</span>
                             </div>
                             <div class="actions">
                                 <ul class="actions-btn">
@@ -102,9 +98,7 @@
                                     <div class="title"> Total </div>
                                     <div class="number am-text-success"> 2460 </div>
                                 </div>
-
                             </div>
-
                             <table class="am-table tpl-table">
                                 <thead>
                                 <tr class="tpl-table-uppercase">
@@ -124,51 +118,6 @@
                                     <td>65</td>
                                     <td class="font-green bold">26%</td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <img src="assets/img/user02.png" alt="" class="user-pic">
-                                        <a class="user-name" href="###">Alex.</a>
-                                    </td>
-                                    <td>￥2635</td>
-                                    <td>52</td>
-                                    <td class="font-green bold">32%</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="assets/img/user03.png" alt="" class="user-pic">
-                                        <a class="user-name" href="###">Tinker404</a>
-                                    </td>
-                                    <td>￥1267</td>
-                                    <td>65</td>
-                                    <td class="font-green bold">51%</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="assets/img/user04.png" alt="" class="user-pic">
-                                        <a class="user-name" href="###">Arron.y</a>
-                                    </td>
-                                    <td>￥657</td>
-                                    <td>65</td>
-                                    <td class="font-green bold">73%</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="assets/img/user05.png" alt="" class="user-pic">
-                                        <a class="user-name" href="###">Yves</a>
-                                    </td>
-                                    <td>￥3907</td>
-                                    <td>65</td>
-                                    <td class="font-green bold">12%</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="assets/img/user06.png" alt="" class="user-pic">
-                                        <a class="user-name" href="###">小黄鸡</a>
-                                    </td>
-                                    <td>￥900</td>
-                                    <td>65</td>
-                                    <td class="font-green bold">10%</td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -180,15 +129,12 @@
                             <div class="tpl-caption font-green ">
                                 <span>项目进度</span>
                             </div>
-
                         </div>
-
                         <div class="am-tabs tpl-index-tabs" data-am-tabs>
                             <ul class="am-tabs-nav am-nav am-nav-tabs">
                                 <li class="am-active"><a href="#tab1">进行中</a></li>
                                 <li><a href="#tab2">已完成</a></li>
                             </ul>
-
                             <div class="am-tabs-bd">
                                 <div class="am-tab-panel am-fade am-in am-active" id="tab1">
                                     aaaaa
@@ -196,7 +142,6 @@
                                 <div class="am-tab-panel am-fade" id="tab2">
                                     bbbbbbbb
                                 </div>
-
                             </div>
                         </div>
 

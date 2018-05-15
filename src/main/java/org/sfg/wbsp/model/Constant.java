@@ -9,7 +9,7 @@ public class Constant {
 
     public static final int SUCCESS_CODE=200;
 
-    public static final int FAIL_CODE=200;
+    public static final int FAIL_CODE=500;
 
     public static final String ERROR_MESSAGE="服务异常，请稍后重试！";
 }

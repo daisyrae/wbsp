@@ -39,8 +39,7 @@
         set name    = #{name,jdbcType=VARCHAR},
             define  = #{define,jdbcType=INTEGER},
             address = #{address,jdbcType=VARCHAR},
-            logo    = #{logo,jdbcType=VARCHAR},
-            status  = #{status,jdbcType=INTEGER}
+            logo    = #{logo,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>
