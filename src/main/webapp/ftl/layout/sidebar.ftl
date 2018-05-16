@@ -30,6 +30,24 @@
                         </#if>
                     </a>
                 </li>
+                <li class="tpl-left-nav-item">
+                    <a href="${ctx}/product/productCategoryManager.do" class="nav-link ${(menu_index==3)?string('active','')}">
+                        <i class="am-icon-tag"></i>
+                        <span>商品类目管理</span>
+                        <#if menu_index==3>
+                            <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                        </#if>
+                    </a>
+                </li>
+                <li class="tpl-left-nav-item">
+                    <a href="${ctx}/product/productAttributeManager.do" class="nav-link ${(menu_index==4)?string('active','')}">
+                        <i class="am-icon-yelp"></i>
+                        <span>商品属性管理</span>
+                        <#if menu_index==4>
+                            <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                        </#if>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

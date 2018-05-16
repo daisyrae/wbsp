@@ -14,4 +14,6 @@ public interface CompanyMapper {
     int update(Company record);
 
     int deleteById(Integer id);
+
+    int selectAllCount();
 }

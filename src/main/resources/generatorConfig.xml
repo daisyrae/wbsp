@@ -15,6 +15,7 @@
         <javaModelGenerator targetPackage="org.sfg.wbsp.domain" targetProject="src/main/java"/>
         <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources"/>
         <javaClientGenerator type="XMLMAPPER" targetPackage="org.sfg.wbsp.dao" targetProject="src/main/java"/>
-        <table schema="" tableName="company" enableCountByExample="false" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false"/>
+        <table schema="" tableName="product_category" enableCountByExample="false" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false"/>
+        <table schema="" tableName="product_attribute" enableCountByExample="false" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false"/>
     </context>
 </generatorConfiguration>

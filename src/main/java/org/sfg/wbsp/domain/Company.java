@@ -1,6 +1,9 @@
 package org.sfg.wbsp.domain;
 
-public class Company {
+import java.io.Serializable;
+
+public class Company implements Serializable {
+    private static final long serialVersionUID = 8729960082011742333L;
     private Integer id;
 
     private String name;

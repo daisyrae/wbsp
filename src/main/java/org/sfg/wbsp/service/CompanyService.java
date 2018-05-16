@@ -36,4 +36,8 @@ public class CompanyService {
     public void deleteById(Integer id){
         companyMapper.deleteById(id);
     }
+
+    public int selectAllCount(){
+        return companyMapper.selectAllCount();
+    }
 }

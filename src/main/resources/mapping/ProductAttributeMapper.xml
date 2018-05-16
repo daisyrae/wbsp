@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sfg.wbsp.dao.ProductAttributeMapper" >
+  <resultMap id="BaseResultMap" type="org.sfg.wbsp.domain.ProductAttribute" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select a.*,(select b.name from company b where b.id=a.company_id) as company_name from product_attribute a where a.status=1
+  </select>
+
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select a.*,(select b.name from company b where b.id=a.company_id) as company_name from product_attribute a where a.id = #{id,jdbcType=INTEGER} and a.status=1
+  </select>
+
+  <insert id="insert" parameterType="org.sfg.wbsp.domain.ProductAttribute" >
+    insert into product_attribute (company_id, name)
+    values (#{companyId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="update" parameterType="org.sfg.wbsp.domain.ProductAttribute" >
+    update product_attribute
+    set company_id = #{companyId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="deleteById" parameterType="java.lang.Integer" >
+    update product_attribute set status=-1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

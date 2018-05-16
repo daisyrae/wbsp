@@ -27,7 +27,7 @@
             a.*,
             (select b.name
              from company b
-             where b.id = a.company_id)
+             where b.id = a.company_id) as company_name
         from user a
         where a.status = 1
     </select>
@@ -37,7 +37,7 @@
             a.*,
             (select b.name
              from company b
-             where b.id = a.company_id)
+             where b.id = a.company_id) as company_name
         from user a
         where a.status = 1 and a.id = #{id,jdbcType=INTEGER}
     </select>

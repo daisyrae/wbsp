@@ -10,6 +10,10 @@
         <result column="status" property="status" jdbcType="INTEGER"/>
     </resultMap>
 
+    <select id="selectAllCount" resultType="java.lang.Long">
+        select count(1) from company where status=1
+    </select>
+
     <select id="selectAll" resultMap="BaseResultMap">
         select *
         from company
