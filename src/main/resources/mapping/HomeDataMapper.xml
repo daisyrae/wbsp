@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sfg.wbsp.dao.HomeDataMapper">
+    <resultMap id="BaseResultMap1" type="org.sfg.wbsp.model.NewsInfoModel">
+        <result column="company_id" property="companyId" jdbcType="INTEGER"/>
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="company_logo" property="companyLogo" jdbcType="VARCHAR"/>
+        <result column="order_num" property="orderNum" jdbcType="INTEGER"/>
+        <result column="order_price" property="orderPrice" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <resultMap id="BaseResultMap2" type="org.sfg.wbsp.model.OrderNewsModel">
+        <result column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="customer_name" property="customerName" jdbcType="VARCHAR"/>
+        <result column="order_time" property="orderTime" jdbcType="VARCHAR"/>
+        <result column="order_desc" property="orderDesc" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectCountCompany" resultType="java.lang.Integer">
+        select count(1)
+        from company
+        where status = 1
+    </select>
+
+    <select id="selectCountProduct" resultType="java.lang.Integer">
+        select count(1)
+        from product
+        where status = 1
+    </select>
+
+    <select id="selectCountCustomer" resultType="java.lang.Integer">
+        select count(1)
+        from customer
+        where status = 1
+    </select>
+
+    <select id="selectCountOrder" resultType="java.lang.Integer">
+        select count(1)
+        from `order`
+        where status = 1
+    </select>
+
+    <select id="selectTotalPrice" resultType="java.math.BigDecimal">
+        select sum(total_price)
+        from `order`
+        where status = 1
+    </select>
+
+    <select id="selectTotalPriceByDay" resultType="java.math.BigDecimal" parameterType="java.lang.String">
+        select sum(total_price) from `order` where date_format(order_time, '%Y-%m-%d') = #{day,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectOrderNumByDay" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(1) from `order` where date_format(order_time, '%Y-%m-%d') = #{day,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectNewsInfoData" resultMap="BaseResultMap1" parameterType="java.lang.String">
+        select
+            a.*,
+            b.name as company_name,
+            b.logo as company_logo
+        from (select
+                  max(company_id)  as company_id,
+                  count(1)         as order_num,
+                  sum(total_price) as order_price
+              from `order`
+              where date_format(order_time, '%Y-%m') = #{month,jdbcType=VARCHAR}
+              group by company_id) a left join company b on a.company_id = b.id
+    </select>
+
+    <select id="selectOrderNewsData" resultMap="BaseResultMap2" parameterType="java.lang.String">
+        select
+            a.id                                                                            as order_id,
+            b.chat_nick                                                                     as customer_name,
+            date_format(order_time, '%Y-%m-%d %H:%i:%S')                                    as order_time,
+            concat('订单商家：', c.name, '；', '订单金额：', a.total_price, '；', '商品数量：', a.total_num) as order_desc
+        from `order` a left join customer b on a.customer_id = b.id
+            left join company c on a.company_id = c.id
+        where date_format(a.order_time, '%Y-%m-%d') = #{day,jdbcType=VARCHAR}
+        order by a.order_time desc
+    </select>
+</mapper>

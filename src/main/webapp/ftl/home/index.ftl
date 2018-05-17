@@ -21,10 +21,10 @@
                             <i class="am-icon-slideshare"></i>
                         </div>
                         <div class="details">
-                            <div class="number"> 1349 </div>
-                            <div class="desc"> 新消息 </div>
+                            <div class="number" id="total_company"> 0 </div>
+                            <div class="desc"> 入驻商家 </div>
                         </div>
-                        <a class="more" href="#"> 查看更多
+                        <a class="more" href="${ctx}/company/manager.do"> 查看
                             <i class="m-icon-swapright m-icon-white"></i>
                         </a>
                     </div>
@@ -35,10 +35,10 @@
                             <i class="am-icon-bar-chart-o"></i>
                         </div>
                         <div class="details">
-                            <div class="number"> 62% </div>
-                            <div class="desc"> 收视率 </div>
+                            <div class="number" id="total_product"> 0 </div>
+                            <div class="desc"> 在线商品 </div>
                         </div>
-                        <a class="more" href="#"> 查看更多
+                        <a class="more" href="${ctx}/product/productManager.do"> 查看
                             <i class="m-icon-swapright m-icon-white"></i>
                         </a>
                     </div>
@@ -49,10 +49,10 @@
                             <i class="am-icon-apple"></i>
                         </div>
                         <div class="details">
-                            <div class="number"> 653 </div>
-                            <div class="desc"> 苹果设备 </div>
+                            <div class="number" id="total_customer"> 0 </div>
+                            <div class="desc"> 用户量 </div>
                         </div>
-                        <a class="more" href="#"> 查看更多
+                        <a class="more" href="${ctx}/customer/view.do"> 查看
                             <i class="m-icon-swapright m-icon-white"></i>
                         </a>
                     </div>
@@ -63,10 +63,10 @@
                             <i class="am-icon-android"></i>
                         </div>
                         <div class="details">
-                            <div class="number"> 786 </div>
-                            <div class="desc"> 安卓设备 </div>
+                            <div class="number" id="total_order"> 0 </div>
+                            <div class="desc"> 总订单 </div>
                         </div>
-                        <a class="more" href="#"> 查看更多
+                        <a class="more" href="${ctx}/order/view.do"> 查看
                             <i class="m-icon-swapright m-icon-white"></i>
                         </a>
                     </div>
@@ -78,46 +78,35 @@
                         <div class="tpl-portlet-title">
                             <div class="tpl-caption font-red ">
                                 <i class="am-icon-bar-chart"></i>
-                                <span> 动态资料</span>
+                                <span> 动态资讯</span>
                             </div>
                             <div class="actions">
                                 <ul class="actions-btn">
-                                    <li class="purple-on">昨天</li>
-                                    <li class="green">前天</li>
-                                    <li class="dark">本周</li>
+                                    <li class="purple-on">今日</li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="tpl-scrollable">
+                        <div class="tpl-scrollable" style="height: 400px;overflow-y: auto;">
                             <div class="number-stats">
                                 <div class="stat-number am-fl am-u-md-6">
-                                    <div class="title am-text-right"> Total </div>
-                                    <div class="number am-text-right am-text-warning"> 2460 </div>
+                                    <div class="title am-text-right"> 订单量 </div>
+                                    <div class="number am-text-right am-text-warning" id="day_order_num"><i class="am-icon-asterisk"></i> 0 </div>
                                 </div>
                                 <div class="stat-number am-fr am-u-md-6">
-                                    <div class="title"> Total </div>
-                                    <div class="number am-text-success"> 2460 </div>
+                                    <div class="title"> 订单总额 </div>
+                                    <div class="number am-text-success" id="day_order_price"><i class="am-icon-jpy"></i> 0 </div>
                                 </div>
                             </div>
                             <table class="am-table tpl-table">
                                 <thead>
                                 <tr class="tpl-table-uppercase">
-                                    <th>人员</th>
-                                    <th>余额</th>
-                                    <th>次数</th>
-                                    <th>效率</th>
+                                    <th>商家</th>
+                                    <th>订单量</th>
+                                    <th>订单总额</th>
+                                    <th>占比</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <img src="assets/img/user01.png" alt="" class="user-pic">
-                                        <a class="user-name" href="###">禁言小张</a>
-                                    </td>
-                                    <td>￥3213</td>
-                                    <td>65</td>
-                                    <td class="font-green bold">26%</td>
-                                </tr>
+                                <tbody id="main_tbody">
                                 </tbody>
                             </table>
                         </div>
@@ -137,10 +126,14 @@
                             </ul>
                             <div class="am-tabs-bd">
                                 <div class="am-tab-panel am-fade am-in am-active" id="tab1">
-                                    aaaaa
+                                    <ul class="tpl-task-list tpl-task-remind" style="height: 400px;overflow-y: auto;">
+
+                                    </ul>
                                 </div>
                                 <div class="am-tab-panel am-fade" id="tab2">
-                                    bbbbbbbb
+                                    <ul class="tpl-task-list tpl-task-remind" style="height: 400px;overflow-y: auto;">
+
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -148,4 +141,60 @@
                     </div>
                 </div>
             </div>
+            <script>
+                $(function () {
+                    //初始化首页数据
+                    $.ajax({
+                        url: '${ctx}/homeData/selectHomeData.do',
+                        type: 'POST',
+                        dataType:"json",
+                        success: function (res) {
+                            if (res.code === 200) {
+                                console.log(res);
+                                var homeData=res.data;
+                                $("#total_company").html(homeData.totalCompany);
+                                $("#total_product").html(homeData.totalProduct);
+                                $("#total_customer").html(homeData.totalCustomer);
+                                $("#total_order").html(homeData.totalOrder);
+                                $("#day_order_num").html('<i class="am-icon-asterisk"></i> '+homeData.dayOrderTotalNum+' ');
+                                $("#day_order_price").html('<i class="am-icon-jpy"></i> '+homeData.dayOrderTotalPrice+' ');
+                                if(homeData.newsInfoModels&&homeData.newsInfoModels.length>0){
+                                    var $mainTbody=$("#main_tbody");
+                                    $mainTbody.empty();
+                                    var newsInfos=homeData.newsInfoModels;
+                                    $.each(newsInfos,function (i,item) {
+                                        $mainTbody.append(
+                                                '<tr>' +
+                                                    '<td>' +
+                                                        '<img src="'+item.companyLogo+'" class="user-pic">' +
+                                                        '<span class="user-name">'+item.companyName+'</span>' +
+                                                    '</td>' +
+                                                    '<td>'+item.orderNum+'</td>' +
+                                                    '<td>￥'+item.orderPrice+'</td>' +
+                                                    '<td class="font-green bold">'+item.orderRate+'%</td>' +
+                                                '</tr>');
+                                    });
+                                }
+                                if(homeData.orderNewsModels&&homeData.orderNewsModels.length>0){
+                                    var $tab1_ul=$("#tab1").find('ul');
+                                    $tab1_ul.empty();
+                                    var orderNews=homeData.orderNewsModels;
+                                    $.each(orderNews,function (i,item) {
+                                        $tab1_ul.append(
+                                                '<li>' +
+                                                    '<div class="cosB">'+item.orderTime+'</div>' +
+                                                    '<div class="cosA">' +
+                                                        '<span class="cosIco">' +
+                                                            '<i class="am-icon-bell-o"></i>' +
+                                                        '</span>' +
+                                                        '<span>'+item.orderDesc+'</span>' +
+                                                    '</div>' +
+                                                '</li>');
+                                    });
+                                }
+                            }
+                        }
+                    });
+                });
+            </script>
 </@layout.layout>
