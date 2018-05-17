@@ -68,4 +68,10 @@ public class ProductCategoryController extends BaseController {
         productCategoryService.deleteById(id);
         return success();
     }
+
+    @RequestMapping("/selectAllProductCategoryByCompanyId.do")
+    @ResponseBody
+    public AjaxResult selectAllProductCategoryByCompanyId(int companyId){
+        return successData(productCategoryService.selectAllProductCategoryByCompanyId(companyId));
+    }
 }

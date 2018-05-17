@@ -16,4 +16,6 @@ public interface ProductCategoryMapper {
     int deleteById(Integer id);
 
     List<ProductCategory> selectAllProductCategoryNoSelf(int id);
+
+    List<ProductCategory> selectAllProductCategoryByCompanyId(int companyId);
 }

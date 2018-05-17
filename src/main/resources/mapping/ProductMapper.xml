@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sfg.wbsp.dao.ProductMapper">
+    <resultMap id="BaseResultMap" type="org.sfg.wbsp.domain.Product">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="company_id" jdbcType="INTEGER" property="companyId"/>
+        <result column="company_name" jdbcType="VARCHAR" property="companyName"/>
+        <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="category_name" jdbcType="VARCHAR" property="categoryName"/>
+        <result column="attribute_id" jdbcType="INTEGER" property="attributeId"/>
+        <result column="attribute_name" jdbcType="VARCHAR" property="attributeName"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="pic" jdbcType="VARCHAR" property="pic"/>
+        <result column="memo" jdbcType="VARCHAR" property="memo"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+            a.*,
+            (select b.name
+             from company b
+             where b.id = a.company_id)   as company_name,
+            (select c.name
+             from product_category c
+             where c.id = a.category_id)  as category_name,
+            (select d.name
+             from product_attribute d
+             where d.id = a.attribute_id) as attribute_name
+        from product a
+        where a.status = 1
+    </select>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+            a.*,
+            (select b.name
+             from company b
+             where b.id = a.company_id)   as company_name,
+            (select c.name
+             from product_category c
+             where c.id = a.category_id)  as category_name,
+            (select d.name
+             from product_attribute d
+             where d.id = a.attribute_id) as attribute_name
+        from product a
+        where a.status = 1 and a.id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="org.sfg.wbsp.domain.Product">
+        insert into product (company_id, category_id,
+                             attribute_id, name, price,
+                             pic, memo)
+        values (#{companyId,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER},
+                #{attributeId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL},
+                #{pic,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="org.sfg.wbsp.domain.Product">
+        update product
+        set company_id   = #{companyId,jdbcType=INTEGER},
+            category_id  = #{categoryId,jdbcType=INTEGER},
+            attribute_id = #{attributeId,jdbcType=INTEGER},
+            name         = #{name,jdbcType=VARCHAR},
+            price        = #{price,jdbcType=DECIMAL},
+            pic          = #{pic,jdbcType=VARCHAR},
+            memo         = #{memo,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="deleteById" parameterType="java.lang.Integer">
+        update product
+        set status = -1
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

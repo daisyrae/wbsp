@@ -36,4 +36,8 @@ public class ProductAttributeService {
     public void deleteId(Integer id){
         productAttributeMapper.deleteId(id);
     }
+
+    public List<ProductAttribute> selectAllProductAttributeByCompanyId(int companyId) {
+        return productAttributeMapper.selectAllProductAttributeByCompanyId(companyId);
+    }
 }

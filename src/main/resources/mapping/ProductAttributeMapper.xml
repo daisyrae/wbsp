@@ -9,6 +9,10 @@
     <result column="status" property="status" jdbcType="INTEGER" />
   </resultMap>
 
+  <select id="selectAllProductAttributeByCompanyId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select * from product_attribute where company_id=#{companyId,jdbcType=INTEGER}
+  </select>
+
   <select id="selectAll" resultMap="BaseResultMap">
     select a.*,(select b.name from company b where b.id=a.company_id) as company_name from product_attribute a where a.status=1
   </select>

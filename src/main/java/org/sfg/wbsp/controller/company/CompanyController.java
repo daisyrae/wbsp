@@ -55,7 +55,7 @@ public class CompanyController extends BaseController {
         company.setName(name);
         company.setDefine(Integer.parseInt(define));
         company.setAddress(address);
-        company.setLogo(FileUploadUtil.uploadCompanyFile(file,request));
+        company.setLogo(FileUploadUtil.uploadFile(file, request, "company"));
         if (StringUtils.isEmpty(id)) {
             //新增数据
             companyService.insert(company);

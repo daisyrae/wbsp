@@ -50,4 +50,10 @@ public class ProductAttributeController extends BaseController {
         productAttributeService.deleteId(id);
         return success();
     }
+
+    @RequestMapping("/selectAllProductAttributeByCompanyId.do")
+    @ResponseBody
+    public AjaxResult selectAllProductAttributeByCompanyId(int companyId){
+        return successData(productAttributeService.selectAllProductAttributeByCompanyId(companyId));
+    }
 }

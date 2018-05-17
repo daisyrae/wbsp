@@ -3,7 +3,7 @@
 <@layout.layout 3>
     <ol class="am-breadcrumb">
         <li><a href="${ctx}/index.do" class="am-icon-home">首页</a></li>
-        <li class="am-active">商品类目管理</li>
+        <li class="am-active">商品类目维护</li>
     </ol>
     <div class="tpl-portlet-components">
         <div class="portlet-title">

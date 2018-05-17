@@ -38,4 +38,8 @@ public class ProductCategoryService {
     public List<ProductCategory> selectAllProductCategoryNoSelf(int id) {
         return productCategoryMapper.selectAllProductCategoryNoSelf(id);
     }
+
+    public List<ProductCategory> selectAllProductCategoryByCompanyId(int companyId) {
+        return productCategoryMapper.selectAllProductCategoryByCompanyId(companyId);
+    }
 }

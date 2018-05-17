@@ -51,13 +51,13 @@
                         <form class="am-form am-form-horizontal" id="company-edit-form" method="post" enctype="multipart/form-data" data-am-validator>
                             <input type="hidden" name="id">
                             <div class="am-form-group">
-                                <label for="user-name" class="am-u-sm-2 am-form-label">名称</label>
+                                <label class="am-u-sm-2 am-form-label">名称</label>
                                 <div class="am-u-sm-10">
                                     <input name="name" placeholder="输入商家名称" type="text" required>
                                 </div>
                             </div>
                             <div class="am-form-group">
-                                <label for="user-email" class="am-u-sm-2 am-form-label">类型</label>
+                                <label class="am-u-sm-2 am-form-label">类型</label>
                                 <div class="am-u-sm-10">
                                     <select name="define" required>
                                         <option value="1">自营</option>
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <div class="am-form-group">
-                                <label for="user-phone" class="am-u-sm-2 am-form-label">LOGO</label>
+                                <label lass="am-u-sm-2 am-form-label">LOGO</label>
                                 <div class="am-u-sm-10">
                                     <div class="am-form-group am-form-file">
                                         <button type="button" class="am-btn am-btn-secondary am-btn-sm" style="width: 100%;">
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                             <div class="am-form-group">
-                                <label for="user-intro" class="am-u-sm-2 am-form-label">地址</label>
+                                <label class="am-u-sm-2 am-form-label">地址</label>
                                 <div class="am-u-sm-10">
                                     <textarea rows="5" name="address" placeholder="输入商家联系地址" required></textarea>
                                 </div>

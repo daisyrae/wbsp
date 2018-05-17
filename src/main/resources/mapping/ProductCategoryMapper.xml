@@ -15,6 +15,10 @@
         select * from product_category where status=1 and <![CDATA[id<>#{id,jdbcType=INTEGER}]]>
     </select>
 
+    <select id="selectAllProductCategoryByCompanyId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select * from product_category where status=1 and company_id=#{companyId,jdbcType=INTEGER}
+    </select>
+
     <select id="selectAll" resultMap="BaseResultMap">
         select
             a.*,

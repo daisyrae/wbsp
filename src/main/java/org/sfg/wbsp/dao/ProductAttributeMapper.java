@@ -15,4 +15,6 @@ public interface ProductAttributeMapper {
     int update(ProductAttribute record);
 
     int deleteId(Integer id);
+
+    List<ProductAttribute> selectAllProductAttributeByCompanyId(int companyId);
 }

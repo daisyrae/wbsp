@@ -3,7 +3,7 @@
 <@layout.layout 4>
     <ol class="am-breadcrumb">
         <li><a href="${ctx}/index.do" class="am-icon-home">首页</a></li>
-        <li class="am-active">商品属性管理</li>
+        <li class="am-active">商品属性维护</li>
     </ol>
     <div class="tpl-portlet-components">
         <div class="portlet-title">
@@ -58,7 +58,7 @@
                             <div class="am-form-group">
                                 <label class="am-u-sm-2 am-form-label">名称</label>
                                 <div class="am-u-sm-10">
-                                    <input name="name" placeholder="输入商品类目名称" type="text" required>
+                                    <input name="name" placeholder="输入商品属性名称" type="text" required>
                                 </div>
                             </div>
                             <div class="am-form-group">
