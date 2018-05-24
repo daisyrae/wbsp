@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sfg.wbsp.dao.CustomerMapper">
+    <resultMap id="BaseResultMap" type="org.sfg.wbsp.domain.Customer">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="open_id" property="openId" jdbcType="VARCHAR"/>
+        <result column="chat_nick" property="chatNick" jdbcType="VARCHAR"/>
+        <result column="chat_head" property="chatHead" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="INTEGER"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from customer
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <update id="deleteById" parameterType="java.lang.Integer">
+        update customer
+        set status = -1
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <insert id="insert" parameterType="org.sfg.wbsp.domain.Customer">
+        insert into customer (open_id, chat_nick,
+                              chat_head, name, phone,
+                              email)
+        values (#{openId,jdbcType=VARCHAR}, #{chatNick,jdbcType=VARCHAR},
+                #{chatHead,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=INTEGER},
+                #{email,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="org.sfg.wbsp.domain.Customer">
+        update customer
+        set open_id   = #{openId,jdbcType=VARCHAR},
+            chat_nick = #{chatNick,jdbcType=VARCHAR},
+            chat_head = #{chatHead,jdbcType=VARCHAR},
+            name      = #{name,jdbcType=VARCHAR},
+            phone     = #{phone,jdbcType=INTEGER},
+            email     = #{email,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

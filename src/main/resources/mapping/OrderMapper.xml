@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sfg.wbsp.dao.OrderMapper">
+    <resultMap id="BaseResultMap" type="org.sfg.wbsp.domain.Order">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="company_id" property="companyId" jdbcType="INTEGER"/>
+        <result column="customer_id" property="customerId" jdbcType="INTEGER"/>
+        <result column="address_id" property="addressId" jdbcType="INTEGER"/>
+        <result column="total_price" property="totalPrice" jdbcType="DECIMAL"/>
+        <result column="total_num" property="totalNum" jdbcType="INTEGER"/>
+        <result column="order_time" property="orderTime" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from `order`
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <update id="deleteById" parameterType="java.lang.Integer">
+        update `order`
+        set status = -1
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <insert id="insert" parameterType="org.sfg.wbsp.domain.Order">
+        insert into `order` (company_id, customer_id,
+                             address_id, total_price, total_num,
+                             order_time)
+        values (#{companyId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER},
+                #{addressId,jdbcType=INTEGER}, #{totalPrice,jdbcType=DECIMAL}, #{totalNum,jdbcType=INTEGER},
+                #{orderTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="update" parameterType="org.sfg.wbsp.domain.Order">
+        update `order`
+        set company_id  = #{companyId,jdbcType=INTEGER},
+            customer_id = #{customerId,jdbcType=INTEGER},
+            address_id  = #{addressId,jdbcType=INTEGER},
+            total_price = #{totalPrice,jdbcType=DECIMAL},
+            total_num   = #{totalNum,jdbcType=INTEGER},
+            order_time  = #{orderTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

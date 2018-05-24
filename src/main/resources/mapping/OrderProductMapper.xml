@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sfg.wbsp.dao.OrderProductMapper">
+    <resultMap id="BaseResultMap" type="org.sfg.wbsp.domain.OrderProduct">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="product_id" property="productId" jdbcType="INTEGER"/>
+        <result column="pick_num" property="pickNum" jdbcType="INTEGER"/>
+        <result column="unit_price" property="unitPrice" jdbcType="DECIMAL"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from order_product
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <update id="deleteById" parameterType="java.lang.Integer">
+        update order_product
+        set status = -1
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <insert id="insert" parameterType="org.sfg.wbsp.domain.OrderProduct">
+        insert into order_product (order_id, product_id,
+                                   pick_num, unit_price
+        )
+        values (#{orderId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER},
+                #{pickNum,jdbcType=INTEGER}, #{unitPrice,jdbcType=DECIMAL}
+        )
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="org.sfg.wbsp.domain.OrderProduct">
+        update order_product
+        set order_id   = #{orderId,jdbcType=INTEGER},
+            product_id = #{productId,jdbcType=INTEGER},
+            pick_num   = #{pickNum,jdbcType=INTEGER},
+            unit_price = #{unitPrice,jdbcType=DECIMAL}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

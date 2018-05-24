@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sfg.wbsp.dao.CustomerAddressMapper">
+    <resultMap id="BaseResultMap" type="org.sfg.wbsp.domain.CustomerAddress">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="customer_id" property="customerId" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="post_code" property="postCode" jdbcType="VARCHAR"/>
+        <result column="person_name" property="personName" jdbcType="VARCHAR"/>
+        <result column="person_phone" property="personPhone" jdbcType="INTEGER"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from customer_address
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <update id="deleteById" parameterType="java.lang.Integer">
+        update customer_address
+        set status = -1
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <insert id="insert" parameterType="org.sfg.wbsp.domain.CustomerAddress">
+        insert into customer_address (customer_id, address,
+                                      post_code, person_name, person_phone,
+                                      description)
+        values (#{customerId,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+                #{postCode,jdbcType=VARCHAR}, #{personName,jdbcType=VARCHAR}, #{personPhone,jdbcType=INTEGER},
+                #{description,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="org.sfg.wbsp.domain.CustomerAddress">
+        update customer_address
+        set address      = #{address,jdbcType=VARCHAR},
+            post_code    = #{postCode,jdbcType=VARCHAR},
+            person_name  = #{personName,jdbcType=VARCHAR},
+            person_phone = #{personPhone,jdbcType=INTEGER},
+            description  = #{description,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
